@@ -213,7 +213,11 @@ function input(){
     }
     $('#target').append("</tbody>");
 
-});
+}).fail(function(){
+        alert("There is no attendance record on that date.")
+       console.log("can not found this url");
+       history.go(0);
+   })
 }
 
 
