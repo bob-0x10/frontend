@@ -1,0 +1,12 @@
+
+.container-M::after{clear: both; display: block; content: '';}
+
+.container-M .M2{
+  float: left;
+  width: 55%;
+}
+
+.container-M .M1{
+  float: right;
+  width: 40%;
+}
