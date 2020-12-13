@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-  <http use-expressions="true" auto-config="true"
-  disable-url-rewriting="true">
-  <intercept-url pattern="/**" access="permitAll"
-      requires-channel="https" />
-  <intercept-url pattern="/user/**"
-      access="hasAnyRole('USER,ADMIN')" />
-  <intercept-url pattern="/admin/**"
-      access="hasRole('ADMIN')" requires-channel="https" />
--->
 
 <head>
   <meta charset="utf-8">
@@ -30,9 +20,10 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/css/bootstrap.min.css" rel = "stylesheet">
+  
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/searchByPerson.css" rel="stylesheet">
+  <link href="assets/css/backend.css" rel="stylesheet">
 
   <link rel="shortcut icon" href="assets/img/icon_temp.ico" type="image/x-icon" />
   
@@ -57,8 +48,8 @@
           <li><a href="AsearchByMAC.html">MAC</a></li>
           <li><a href="AviewAll.html">View All</a></li>
           <li><a href="Amap.html">Map</a></li>
-          <li class="active"><a href="Aregister.html">REGISTER</a></li>
-          <li><a id="topUserId" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
+          <li><a href="Aregister.html">REGISTER</a></li>
+          <li><a id="topUserId" href= "BackendConn_out.html" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -72,11 +63,11 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>REGISTER</h2>
+          <h2>Backend Connection</h2>
           
           <ol>
             <li><a href="Aindex.html">Home</a></li>
-            <li>REGISTER</li>
+            <li>Backend Connection</li>
           </ol>
         </div>
 
@@ -87,51 +78,25 @@
     <section class="pricing section-bg" data-aos="fade-up">
       <div class="container">
         <div class="section-title">
-          <h2>Register</h2>
-          <p>You can check specific one's attendance and detail information.</p>
+          <h2>Get Ready to Start</h2>
+          <p>Before using the program, set your own Domain Name. Used for connecting with the Database.</p>
         </div>
         <br>
         <br>
 
-
-        <div class="container-M">
-          <div class="M1-R" align="center">
-          <h2 class="mb-3" style="font-size: 28px; font-weight: 300; ">Member Registration</h2>
-            <form action="https://bob0x10.ga/user/signup" method="post">
-
-        
-            <input type="text" name = "name" id = "inputname" class="form-control" placeholder="NAME" style="margin-bottom: 20px; margin-top: 20px; width: 350px; ">
-            <input type="text" name = "id" id = "inputid" class="form-control" placeholder="ID" style="margin-bottom: 20px; margin-top: 20px;  width: 350px; ">
-            <input type="password" name = "password" id = "inputpass" class="form-control" placeholder="PW" style="margin-bottom: 20px; margin-top: 20px;  width: 350px; ">
-            
-
-         
+        <div>
+          <div align="center">
+          <h2 style="font-size: 28px; font-weight: 300; ">Program Registration</h2>
+            <input type="text" id = "inputprogID" class="form-control" placeholder="Input Your Domain Name"  style="margin-bottom: 20px; margin-top: 20px; width: 350px; ">
            <p align="center">
-            <button class="btn btn-secondary" type="submit" id="signupButton"  data-loading-text="Loading..." autocomplete="off" style="width: 200px;">Sign UP</button>
-            </p>
-          </form>
-
-          </div>
-  
-          <div class="M2-R" align="center" >
-           <h2 class="mb-3" style="font-size: 28px; font-weight: 300;">Device Registration</h2>
-     
-            <form action="https://bob0x10.ga/device/add" method="post">
-            <input type="text" name = "id" id = "inputid2" class="form-control" placeholder="ID" style="margin-bottom: 30px; margin-top: 25px;  width: 350px; ">
-            <input type="mac" name = "mac" id = "inputmac" class="form-control" placeholder="MAC Address  ex) aa:bb:cc:dd:ee:ff" style="margin-bottom: 40px; margin-top: 20px;  width: 350px; ">
-          <br>
-          <p align="center">
-            <button class="btn btn-secondary"  id="deviceButton"  data-loading-text="Loading..." autocomplete="off" type="submit" style="width: 200px;">Sign UP</button>
+            <button onclick="input()" style="width: 200px;">Sign UP</button>
             </p>
           </form>
           </div>
       </div>
 
-      
-      
-
       </div>
-    </section><!-- End Pricing Section -->
+    </section>
 
   </main><!-- End #main -->
 
@@ -159,8 +124,6 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
 
-  <!-- 이전거에서 가져옴-->
-
    <!--datepicker-->
    <link rel = "stylesheet" href="assets/jquery-ui/jquery-ui.css" type ="text/css"/>
    <script src="assets/jquery-ui/jquery-ui.min.js"></script>
@@ -174,29 +137,30 @@
 
  
 
-  <script type="text/javascript">
-  var regid = document.getElementById("inputid").value;
-  
-  //수정부분 
-  
-  $(document).ready(function(){
-   $('#signupButton').on('click', function () {
-    var $btn = $(this).button('loading');
-    //로직추가
-    alert("Sign UP SUCCESS ! ");
-   });
-  });
+<script type="text/javascript">
+  function input(){
+    var progID = document.getElementById("inputprogID").value;
 
-  $(document).ready(function(){
-   $('#deviceButton').on('click', function () {
-    var $btn = $(this).button('loading');
-    //로직추가
-    alert("Device upload SUCCESS ! ");
-   });
-  });
+    if(!localStorage.getItem("proID")){ //새로고침 방지 
+    localStorage.setItem("progID", progID);
+    }
+    console.log(localStorage.getItem("progID"));
 
+    checkLoginStatus();
+  }
 
-    </script>
+  function checkLoginStatus(){
+    console.log("checkLoginStatus");
+    const status = localStorage.getItem("progID");
+    if(status === null){//없다면 
+         alert('Not a valid ID!');
+         history.go(0);
+    }
+    else{//로그인 되었을 때 페이지 변환 
+      location.replace('BackendConn_out.html');
+    }
+}
+</script>
   
 </body>
       

@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-  <http use-expressions="true" auto-config="true"
-  disable-url-rewriting="true">
-  <intercept-url pattern="/**" access="permitAll"
-      requires-channel="https" />
-  <intercept-url pattern="/user/**"
-      access="hasAnyRole('USER,ADMIN')" />
-  <intercept-url pattern="/admin/**"
-      access="hasRole('ADMIN')" requires-channel="https" />
--->
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>BoB 0x10</title>
+  <title>BoB 0x10</title> 
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -32,7 +22,7 @@
   <link href="assets/css/bootstrap.min.css" rel = "stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/searchByPerson.css" rel="stylesheet">
+  <link href="assets/css/backend.css" rel="stylesheet">
 
   <link rel="shortcut icon" href="assets/img/icon_temp.ico" type="image/x-icon" />
   
@@ -57,8 +47,8 @@
           <li><a href="AsearchByMAC.html">MAC</a></li>
           <li><a href="AviewAll.html">View All</a></li>
           <li><a href="Amap.html">Map</a></li>
-          <li class="active"><a href="Aregister.html">REGISTER</a></li>
-          <li><a id="topUserId" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
+          <li><a href="Aregister.html">REGISTER</a></li>
+          <li><a id="topUserId" href= "BackendConn_out.html" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -72,11 +62,11 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>REGISTER</h2>
+          <h2>Backend Connection</h2>
           
           <ol>
             <li><a href="Aindex.html">Home</a></li>
-            <li>REGISTER</li>
+            <li>Backend Connection</li>
           </ol>
         </div>
 
@@ -87,41 +77,18 @@
     <section class="pricing section-bg" data-aos="fade-up">
       <div class="container">
         <div class="section-title">
-          <h2>Register</h2>
-          <p>You can check specific one's attendance and detail information.</p>
+          <h2>Welcome to BoB 0X10 </h2>
+          <p>Welcome to BoB 0x10. Please select the function you want from the menu. What are you looking for?</p>
         </div>
         <br>
         <br>
 
-
-        <div class="container-M">
-          <div class="M1-R" align="center">
-          <h2 class="mb-3" style="font-size: 28px; font-weight: 300; ">Member Registration</h2>
-            <form action="https://bob0x10.ga/user/signup" method="post">
-
-        
-            <input type="text" name = "name" id = "inputname" class="form-control" placeholder="NAME" style="margin-bottom: 20px; margin-top: 20px; width: 350px; ">
-            <input type="text" name = "id" id = "inputid" class="form-control" placeholder="ID" style="margin-bottom: 20px; margin-top: 20px;  width: 350px; ">
-            <input type="password" name = "password" id = "inputpass" class="form-control" placeholder="PW" style="margin-bottom: 20px; margin-top: 20px;  width: 350px; ">
-            
-
-         
+        <div>
+          <div align="center">
+          <h2 style="font-size: 28px; font-weight: 300; ">Program Registration</h2>
+            <input type="text" id = "inputprogID" class="form-control" value= "loginid"  style="margin-bottom: 20px; margin-top: 20px; width: 350px; text-align: center;"  disabled>
            <p align="center">
-            <button class="btn btn-secondary" type="submit" id="signupButton"  data-loading-text="Loading..." autocomplete="off" style="width: 200px;">Sign UP</button>
-            </p>
-          </form>
-
-          </div>
-  
-          <div class="M2-R" align="center" >
-           <h2 class="mb-3" style="font-size: 28px; font-weight: 300;">Device Registration</h2>
-     
-            <form action="https://bob0x10.ga/device/add" method="post">
-            <input type="text" name = "id" id = "inputid2" class="form-control" placeholder="ID" style="margin-bottom: 30px; margin-top: 25px;  width: 350px; ">
-            <input type="mac" name = "mac" id = "inputmac" class="form-control" placeholder="MAC Address  ex) aa:bb:cc:dd:ee:ff" style="margin-bottom: 40px; margin-top: 20px;  width: 350px; ">
-          <br>
-          <p align="center">
-            <button class="btn btn-secondary"  id="deviceButton"  data-loading-text="Loading..." autocomplete="off" type="submit" style="width: 200px;">Sign UP</button>
+            <button onclick="logoutProcess()" style="width: 200px;">logout</button>
             </p>
           </form>
           </div>
@@ -131,7 +98,7 @@
       
 
       </div>
-    </section><!-- End Pricing Section -->
+    </section>
 
   </main><!-- End #main -->
 
@@ -174,29 +141,42 @@
 
  
 
-  <script type="text/javascript">
-  var regid = document.getElementById("inputid").value;
-  
-  //수정부분 
-  
-  $(document).ready(function(){
-   $('#signupButton').on('click', function () {
-    var $btn = $(this).button('loading');
-    //로직추가
-    alert("Sign UP SUCCESS ! ");
-   });
-  });
+<script type="text/javascript">
+    var progID = localStorage.getItem("progID");
 
-  $(document).ready(function(){
-   $('#deviceButton').on('click', function () {
-    var $btn = $(this).button('loading');
-    //로직추가
-    alert("Device upload SUCCESS ! ");
-   });
-  });
+    if(!localStorage.getItem("proID")){ //새로고침 방지 
+    localStorage.setItem("progID", progID);
+    }
 
+    function logoutProcess(){
+        console.log("logoutProcess");
+        localStorage.removeItem("progID");
+        alert('Logout!');
+        location.replace('BackendConn.html');
+    }
 
-    </script>
+      function checkStatus(){
+        console.log("checkStatus");
+        
+        if(progID == 'null'){ //null 인 아이디 사용불가
+          alert('Invalid access. Please connect again');
+          location.replace('BackendConn.html');
+        }
+    }
+
+    function init(){
+        checkStatus();
+    }
+
+    init();
+
+    $(document).ready(function() {
+        var progID = localStorage.getItem("progID");
+        $('#inputprogID').val(localStorage.getItem("progID"));
+        $('#topUserId').text("Accessed ");
+    });
+
+</script>
   
 </body>
       

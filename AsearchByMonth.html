@@ -26,12 +26,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/searchByDate.css" rel="stylesheet">
 
-  <!-- calendar 
-       <link href='assets/fullcalendar-5.3.2/lib/main.css' rel='stylesheet' />
-       <script src='assets/fullcalendar-5.3.2/lib/main.js'></script>
-      // <script src = "assets/js/calendar.js"></script>
-  -->
-
   <style>
     .ui-datepicker-calendar {
         display: none;
@@ -61,6 +55,7 @@
           <li><a href="AviewAll.html">View All</a></li>
           <li><a href="Amap.html">Map</a></li>
           <li><a href="Aregister.html">REGISTER</a></li>
+          <li><a id="topUserId" href= "BackendConn_out.html" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -99,14 +94,6 @@
           <button onclick="input()" style="margin-bottom: 20px; margin-top: 20px;">SEARCH</button>
         </div>
         
-
-      <!-- 당신의 달력, 다이얼로그로 대체되었다.
-        <div class="container-M">
-          <div class="M1">
-              <div class="calender" id ='calendar' >  
-              </div>
-          </div>
-      -->
       <div class="M2">
         <table id="target" class="list-table" style="margin: auto;">
             <tr class="list-info">
@@ -120,7 +107,7 @@
 </div>
 
 </div>
-</section><!-- End Seacrh Section -->
+</section>
 
 </main><!-- End #main -->
 </div>
@@ -170,18 +157,14 @@ $('#BB').css("height",tempheight);
 
 function input(){
 
-   //수정필요 
   var inputdate = document.getElementById("inputdate").value;
   var inputname = document.getElementById("inputname").value;
-  //var searchurl = 'https://bob0x10.ga/api/date/';
-
   searchdate = inputdate;
   searchname = inputname;
 
-  //https://bob0x10.ga/api/name/서예진/month/202009
-
   //월로 검색
-  var finalURL = 'https://bob0x10.ga/api/name/' + searchname +'/month/' +  searchdate;
+  var progID = localStorage.getItem("progID");
+  var finalURL = 'https://'+ progID + '/api/date/' + searchname +'/month/' +  searchdate;
 
   $.getJSON(finalURL,function(data){
     $('#target').css("visibility", "visible").css("border", "1px solid black");
@@ -241,6 +224,43 @@ $("#inputdate").datepicker({
             }
         } );
 
+});
+
+
+//로그인되어있는지 확인 
+console.log(localStorage.getItem("progID"))
+var progID = localStorage.getItem("progID");
+
+if(!localStorage.getItem("proID")){ //새로고침 방지 
+localStorage.setItem("progID", progID);
+}
+
+
+function logoutProcess(){
+    console.log("logoutProcess");
+    localStorage.removeItem("progID");
+    alert('Logout!');
+    location.replace('BackendConn.html');
+}
+
+  function checkStatus(){
+    console.log("checkStatus");
+    
+    if(progID == 'null'){ //null 인 아이디 사용불가! 
+      alert('Invalid access. Please connect again');
+      location.replace('BackendConn.html');
+    }
+}
+
+function init(){
+    checkStatus();
+}
+
+init();
+
+$(document).ready(function() {
+    var progID = localStorage.getItem("progID");
+    $('#topUserId').text("Accessed ");
 });
 
 </script>

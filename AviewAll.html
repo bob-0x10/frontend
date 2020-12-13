@@ -52,6 +52,7 @@
           <li class="active"><a href="AviewAll.html">View All</a></li>
           <li><a href="Amap.html">Map</a></li>
           <li><a href="Aregister.html">REGISTER</a></li>
+          <li><a id="topUserId" href= "BackendConn_out.html" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -100,7 +101,7 @@
       </div>
 
       </div>
-    </section><!-- End Seacrh Section -->
+    </section>
 
   </main><!-- End #main -->
 
@@ -136,7 +137,8 @@
   <script src="assests/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-      $.getJSON('https://bob0x10.ga/api/all',function(data){
+  var progID = localStorage.getItem("progID");
+      $.getJSON('https://'+ progID +'/api/all',function(data){
             $('#target').css("visibility", "visible").css("border", "1px solid green");
             $("#target").append("<tbody>");
             for (var i = 0; i < data['count']; i++){
@@ -160,6 +162,45 @@
             $('.count').text(temp.length);                
             })
         })
+
+
+//로그인되어있는지 확인 
+console.log(localStorage.getItem("progID"))
+var progID = localStorage.getItem("progID");
+
+if(!localStorage.getItem("proID")){ //새로고침 방지 
+localStorage.setItem("progID", progID);
+}
+
+
+function logoutProcess(){
+    console.log("logoutProcess");
+    localStorage.removeItem("progID");
+    alert('Logout!');
+    location.replace('BackendConn.html');
+}
+
+  function checkStatus(){
+    console.log("checkStatus");
+    
+    if(progID == 'null'){ //null 인 아이디 사용불가! 
+      alert('Invalid access. Please connect again');
+      location.replace('BackendConn.html');
+    }
+}
+
+function init(){
+    checkStatus();
+}
+
+init();
+
+$(document).ready(function() {
+    var progID = localStorage.getItem("progID");
+    $('#topUserId').text("Accessed ");
+});
+
+
   </script>
 
 </body>

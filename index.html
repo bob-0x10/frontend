@@ -25,6 +25,7 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   
@@ -51,6 +52,7 @@
           <li><a href="AviewAll.html">View All</a></li>
           <li><a href="Amap.html">Map</a></li>
           <li><a href="Aregister.html">REGISTER</a></li>
+          <li><a id="topUserId" href= "BackendConn.html" style="color:whitesmoke; font-style: italic; font-size: 15px;"></a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -65,71 +67,16 @@
       <div class="carousel-item active">
         <div class="carousel-container">
           <h2 class="animated fadeInDown">BoB 0x10 Attendance Checker</h2>
-          <p class="animated fadeInUp">If you are not a member, register as a member !</p>
-          
-          <a href="Aregister.html" class="btn-get-started animated fadeInUp">REGISTER</a>
-        </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Check Attendance by Date</h2>
-          <p class="animated fadeInUp">You can check Everyone's attendance at a glance on specific date.</p>
-          <a href="AsearchByDate.html" class="btn-get-started animated fadeInUp">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Check Attendance per Month</h2>
-          <p class="animated fadeInUp">You can check Everyone's attendance at a glance on that month.</p>
-          <a href="AsearchByMonth.html" class="btn-get-started animated fadeInUp">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Slide 4 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Check Attendance per Person</h2>
-          <p class="animated fadeInUp">You can check specific One's attendance by Calender and Dounut Chart.</p>
-          <a href="AsearchByPerson.html" class="btn-get-started animated fadeInUp">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Slide 5 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Check Attendance by MAC address</h2>
-          <p class="animated fadeInUp">You can check specific one's attendance and detail information.</p>
-          <a href="AsearchByMAC.html" class="btn-get-started animated fadeInUp">Get Started</a>
+          <p class="animated fadeInUp">If you are not a member, register as a member !</p> <br> <br>
+          <a href="BackendConn.html" class="btn-get-started animated fadeInUp">  READY TO USE  </a>
+          <a href="Aregister.html" class="btn-get-started animated fadeInUp">REGISTER MEMBER</a>
         </div>
       </div>
 
       
-       <!-- Slide 6 -->
-       <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Status of All members</h2>
-          <p class="animated fadeInUp">You can check status of all members</p>
-          <a href="AviewAll.html" class="btn-get-started animated fadeInUp">Get started</a>
-        </div>
-      </div>
-  
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-
     </div>
-  </section><!-- End Hero -->
+  </section>
+
 <!-- ======= About Section ======= -->
 <section class="about" data-aos="fade-up">
   <div class="container">
@@ -189,7 +136,15 @@
   <script src="assets/vendor/aos/aos.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js">
+  
+  $(document).ready(function() {
+    var progID = localStorage.getItem("progID");
+    $('#inputprogID').val(localStorage.getItem("progID"));
+    $('#topUserId').text("Get Domain ");
+});
+  
+  </script>
 
 </body>
 

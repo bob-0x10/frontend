@@ -16,9 +16,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
-   <!--layer ex-->
-   <link href=https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -33,26 +30,16 @@
   
     <!-- Template Main CSS File -->
     <link href="assets/css/map.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Moderna - v2.0.1
-  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  </script>
-
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container">
 
       <div class="logo float-left">
         <h1 class="text-light"><a href="index.html"><span>BoB 0x10</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav class="nav-menu float-right d-none d-lg-block">
@@ -89,48 +76,46 @@
       </div>
     </section><!-- End About Us Section -->
 
-
     <!-- ======= About Section ======= -->
     <section class="about" data-aos="fade-up">
       <div class="container">
 
         <div class="row">
           <div class="container-M">
-          <div class="M2" style="position: relative; width: 65%;" id ="centerIMG">
+          <div class="M2" style="position: relative; width: 65%;">
 
-            <!--스크립트 시작 페이지 넘기는 함수  -->
-            <script type="text/javascript" >
-            function movepage(page)
-            {
-            window.document.location.href=page;
-            return;
-              }
-            </script>
-            <!--스크립트 종료-->
+            <script type="text/javascript">
+              function movepage(page)
+              {
+              window.document.location.href=page;
+              return;
+                }
+              </script>
 
-            <img src="assets/img/BoB_center.png" style="width: 680px;" >
+            <img src="assets/img/BoB_center.png" style="width: 680px;">
+            <div id = "point" style="font-size: 6em; font-weight: bold; position: absolute;">
+              <div id = "userimg" >
+              </div>
+            </div>
+     
+          </div>
 
-           </div>
 
           <div class="M1" style="width: 35%;">
-            <h3 class="font-italic" style="margin-bottom: 0px;">Who's there?             <!--버튼 넣기-->   
-              <input type="button" class = "button" value="Real Time"  onclick="movepage('Amap_tmp.html')" >                                         
-              <!--버튼 넣기 종료 -->        
+            <h3 class="font-italic" style="margin-bottom: 0px;">Who's there? 
+                <input type="button" class = "button" value="Search Time"  onclick="movepage('Amap.html')" >                                         
             </h3>
+        
 
             <p class="font-italic">
               <!--Specify a date so you can easily see who was in which location in your administration.-->
               <div class="input-group">
                 <input type="text" id = "inputdate" class="form-control" placeholder="YYYY/MM/DD" style="margin-bottom: 5px; margin-top: 5px; ">
                 <input type="text" id = "inputtime" onKeyup="inputTimeColon(this);" class="form-control" placeholder=" HH : MM " style="margin-bottom: 5px; margin-top: 5px;" maxlength="5"/>
-                <button onclick="input()" style="margin-bottom: 5px; margin-top: 5px;">SEARCH</button>
+
               </div>
             </p>
-            <ul> <!--
-              <li><i class="icofont-check-circled"></i> Room 1 : 4 people</li>
-              <li><i class="icofont-check-circled"></i> Room 2 : 4 people</li>
-              <li><i class="icofont-check-circled"></i> Room 3 : 4 people</li>
-            -->
+            <ul> 
               <li>
                 <div>
                   <table id="target" class="list-table" style="margin: auto;">
@@ -147,11 +132,11 @@
         </div>
         </div>
         </div>
+
       </div>
     </section><!-- End About Section -->
 
 <!-- The Modal -->
-<!--모달 분해 필요함-->
 <div id="myModal" class = "modal">
 </div>
 
@@ -180,15 +165,11 @@
             <span id="PT" data-toggle="counter-up"></span>
             <p>PT Room</p>
           </div>
+
         </div>
+
       </div>
     </section><!-- End Facts Section -->
-
-    <!-- ======= Our Skills Section ======= -->
-<!-- End Our Skills Section -->
-
-   <!-- ======= Tetstimonials Section ======= -->
-   <!-- End Ttstimonials Section -->
 
   </main><!-- End #main -->
 
@@ -201,6 +182,7 @@
         </div>
       </div>
     </footer><!-- End Footer -->
+
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
@@ -224,18 +206,44 @@
 <script src="assets/jquery-ui/jquery-ui.min.js"></script>
 
 
+
+
+
 <script type="text/javascript">
+$(function() {
+		timer = setInterval( function () {
+      
+//현재 시간 받기 
+let today = new Date();
+
+let year = today.getFullYear();
+let month = today.getMonth() + 1; 
+let date = today.getDate();
+let hours = today.getHours();
+let minutes = today.getMinutes();
+
+if(month.toString().length <= 1) month = '0' + month;
+if(date.toString().length <= 1) date = '0' + date;
+if(hours.toString().length <= 1) hours = '0' + hours;
+if(minutes.toString().length <= 1) minutes = '0' + minutes;
+
+
+var thistime = ""+year+""+month+""+date+""+hours+""+minutes ; 
+console.log(thistime);
+
+$(document).ready(function() {
+        $('#inputdate').val(""+year+""+month+""+date);
+        $('#inputtime').val(""+hours+":"+minutes);
+    });
+
+
 
 //미리 지정 
 var centerIMG = document.getElementById("centerIMG");
 var newMODAL = document.getElementById("myModal");
 
-
 //코드 복사 시작 
-function input(){
-  var inputdate = document.getElementById("inputdate").value;
-  var inputtime = document.getElementById("inputtime").value; //time 추가 
-  inputtime = inputtime.replace(/\:/g, ""); // 필요없으면 제거! 
+  inputtime = thistime;
 
   var searchurl = 'https://bob0x10.ga/api/map/date/';
   searchdate = inputdate+inputtime;
@@ -278,18 +286,18 @@ function input(){
       document.getElementById("R4").innerHTML=roomlist[2];
       document.getElementById("PT").innerHTML=roomlist[3];
 
-      //var centerIMG = document.getElementById("centerIMG");
 
-      for(var i = 0; i < data.length; i++){
+      for(var i = 0; i < data.length; i++){ //반복문 추가 
       for(var j = 0; j < data[i].members.length; j++){
         var tempimgTAG = "#userimg";
-        var tempmodTAG = "#modal"; //myModal로 변경? 
+        var tempmodTAG = "#modal";
         var tempimg = "userimg";
         var tempmod = "modal";
         tempimgTAG+=(j);
-       // tempmodTAG+=(j);
+        //tempmodTAG+=(j);
         tempimg += (j);
         //tempmod += (j);
+
 
         var newDIV = document.createElement("div");
         newDIV.setAttribute("id",tempimg);
@@ -304,45 +312,31 @@ function input(){
       inputY[j] = (inputY[j])/33.9 * 380;
       console.log(inputX[j]);
       console.log(inputY[j]);
-
-      for(var k = (j-1) ; k>=0; k--){
-      if(inputX[j]==inputX[k]){
-        if(inputY[j]==inputY[k]){
-          inputX[j] = (inputX[j]) + 30;
-          inputY[j] = (inputY[j]) + 30;
-        }
-      }
-      }
-
-
-      console.log(inputX[j]);
-      console.log(inputY[j]);
       inputX[j]+= 'px';
       inputY[j]+= 'px';
 
-    //그림 그리고 모달 레이어 넣기 
       var userid = data[i].members[j].member.id; //API에 맞게 변경 
       var img = "https://bob0x10.ga/img/" + userid; 
-      $("#userimg"+j).empty(); //tempimgTAG
+      $(tempimgTAG).empty();
       $("#modal"+j).empty();//초기화
 
-      //이미지 좌표로 바로 넣기, !!이미지 넣기 전에 TAG에 DIV 추가해보기 
-      $("#userimg"+j).each(function(userimg){
+      //이미지 좌표로 바로 넣기
+      $(tempimgTAG).each(function(userimg){
       var imgurl = "";
       imgurl = "<a href ="+"javascript:openModal("+"'modal"+j+"'"+");"+">"
       +"<img id = "+userid+""+j+" src = '" +img 
       + "' class = "+'img'+" style = " +" 'position: absolute;' "
+      + " onmouseover = \"openModal("+"'modal"+j+"'"+")\""
+      + " onmouseout = \"closeModal("+"'modal"+j+"'"+")\""
       +"/>"
       +"</a>"; 
-      console.log(imgurl);
-      $("#userimg"+j).append(imgurl);
+      $(tempimgTAG).append(imgurl);
       $("#"+userid+""+j).css("bottom", inputY[j]);
       $("#"+userid+""+j).css("left", inputX[j]);
       $("#"+userid+""+j).css("width", '35px');
 
-      });
-
-    //모달 레이어에 상태창 넣기 
+    });
+      //모달 레이어에 상태창 넣기 
     // 각각 모달 레이어를 집어넣는 방식 
     var lay = [];
     lay[j] = '';
@@ -368,6 +362,7 @@ function input(){
         +"<li class='twPc-ArrangeSizeFit'>"
         +"&nbsp"
 				+"</li>"
+      
 				+"<li class='twPc-ArrangeSizeFit'>"	
 						+"<span class='twPc-StatLabel twPc-block'>Device</span>"
 					  +"<span class='twPc-StatValue' style='text-align:center;'><center>"+data[i].members[j].attinfo.deviceid+"</center></span>"
@@ -379,13 +374,11 @@ function input(){
 +"</div>"
               +"</div>"
               +"</div>";
-    //console.log(lay[j]);
+    console.log(lay[j]);
     $('#myModal').append(lay[j]);
-   
-    }}
+      }}
     }
   })
-
 
 $.getJSON(finalURL,function(data){
     $('#target').css("visibility", "visible").css("border", "1px solid black");
@@ -395,22 +388,21 @@ $.getJSON(finalURL,function(data){
       for(var j = 0; j < data[i].members.length; j++){
       $('#target').append("<tr><td>"+data[i].roomid+ "</td><td>"
                                   +data[i].members[j].member.name+ "</td><td>"
-                                  +data[i].members[j].attinfo.deviceid+ "</td><tr>"
+                                    +data[i].members[j].attinfo.deviceid+ "</td><tr>"
                                   );
       }
     }
     $('#target').append("</tbody>");
 
 }).fail(function(){
-        alert("There is no attendance record on that date.")
+       // alert("There is no attendance record on that date.")
        console.log("can not found this url");
-       history.go(0);
+      // history.go(0);
    })
-}
-//복사종료
+ 
+  }, 5000); //5초에 한번씩 받아온다. 
+  });
 
-
-//다이얼로그 
 $(function(){
 $("#inputdate").datepicker({
 showButtonPannel: true,
@@ -424,6 +416,7 @@ dateFormat: "yymmdd"
 function inputTimeColon(time) {
 // replace 함수를 사용하여 콜론( : )을 공백으로 치환한다.
 var replaceTime = time.value.replace(/\:/g, "");
+
 // 텍스트박스의 입력값이 4~5글자 사이가 되는 경우에만 실행한다.
 if(replaceTime.length >= 4 && replaceTime.length < 5) {
     var hours = replaceTime.substring(0, 2);      // 선언한 변수 hours에 시간값을 담는다.
@@ -442,12 +435,14 @@ if(replaceTime.length >= 4 && replaceTime.length < 5) {
     }
 
 
+
     // 입력한 분의 값이 60분을 넘는지 체크한다.
     if(minute > 60) {
         alert("The Minutes cannot exceed 60 minutes.");
         time.value = hours + ":00";
         return false;
     }
+
     time.value = hours + ":" + minute;
 }
 }
@@ -455,12 +450,15 @@ if(replaceTime.length >= 4 && replaceTime.length < 5) {
 //모달 함수 
 function openModal(modalname){
     document.get
-    //$("#myModal").fadeIn(300);
-   // $("."+modalname).fadeIn(300);
    $("#myModal").show();
    $("."+modalname).show();
   }
 
+  function closeModal(modalname){
+  $("#myModal").hide();//modal
+  $(".modal-con").hide();
+}
+   
   $("#myModal, .close").on('click',function(){
     $("#myModal").fadeOut(300);//modal
     $(".modal-con").fadeOut(300);
@@ -469,13 +467,15 @@ function openModal(modalname){
    var modal = document.getElementById('myModal');
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-          if (event.target == modal) {//modal
+            if (event.target != modal) {//modal
+             //modal.style.display = "none";
            $("#myModal").fadeOut(300);//modal
            $(".modal-con").fadeOut(300);
             }
         }
 
-  
+
+
 console.log(localStorage.getItem("progID"))
 var progID = localStorage.getItem("progID");
 
@@ -513,10 +513,8 @@ $(document).ready(function() {
 });
 
 
+
 </script>
-
-
-
 
 </body>
 
