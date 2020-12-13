@@ -111,7 +111,7 @@
               <!--Specify a date so you can easily see who was in which location in your administration.-->
               <div class="input-group">
                 <input type="text" id = "inputdate" class="form-control" placeholder="YYYY/MM/DD" style="margin-bottom: 5px; margin-top: 5px; ">
-                <input type="text" id = "inputtime" onKeyup="inputTimeColon(this);" class="form-control" placeholder=" HH : MM " style="margin-bottom: 5px; margin-top: 5px;" maxlength="5"/>
+                <input type="text" id = "inputtime"  class="form-control" placeholder=" HH : MM " style="margin-bottom: 5px; margin-top: 5px;" maxlength="5"/>
 
               </div>
             </p>
@@ -211,7 +211,7 @@
 
 <script type="text/javascript">
 $(function() {
-		timer = setInterval( function () {
+      timer = setInterval( function () {
       
 //현재 시간 받기 
 let today = new Date();
@@ -243,18 +243,21 @@ var centerIMG = document.getElementById("centerIMG");
 var newMODAL = document.getElementById("myModal");
 
 //코드 복사 시작 
-  inputtime = thistime;
-
+  //inputtime = thistime;
   var searchurl = 'https://bob0x10.ga/api/map/date/';
-  searchdate = inputdate+inputtime;
-
-  var finalURL = searchurl + searchdate;
+  searchdate = inputdate+thistime; //inputtime
+  var finalURL = searchurl + thistime; //searchdate
+  console.log(finalURL);
   var roomlist = [0,0,0,0]; //[2강의실, 3강의실, 4강의실, PT room(5라고가정)]
 
-  //이미지 초기화
-  for( var i = 0; i < 4 ; i++){
-  $('#mans'+i).remove();
+  //모달 초기화
+  $('#myModal').empty();
+  //이미지 초기화 
+  for(var i = 0; i < 30 ; i++)
+  {
+  $("#userimg"+i).empty();
   }
+
 
   $.ajax({
     type:"get",
@@ -294,10 +297,7 @@ var newMODAL = document.getElementById("myModal");
         var tempimg = "userimg";
         var tempmod = "modal";
         tempimgTAG+=(j);
-        //tempmodTAG+=(j);
         tempimg += (j);
-        //tempmod += (j);
-
 
         var newDIV = document.createElement("div");
         newDIV.setAttribute("id",tempimg);
@@ -336,7 +336,7 @@ var newMODAL = document.getElementById("myModal");
       $("#"+userid+""+j).css("width", '35px');
 
     });
-      //모달 레이어에 상태창 넣기 
+      
     // 각각 모달 레이어를 집어넣는 방식 
     var lay = [];
     lay[j] = '';
@@ -351,24 +351,24 @@ var newMODAL = document.getElementById("myModal");
                 +"<a style='font-weight: bold; font-size: 20px;' class='mb-0 mt-0'><b>"+data[i].members[j].member.name+"</b></a>" 
                 +"<span style='font-weight: bold; font-size: 15px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID :  </span> <span style='font-size: 13px;'> "+userid+"</span>"
       +"<div class='twPc-divStats'>"
-			+"<ul class='twPc-Arrange'>"
-				+"<li class='twPc-ArrangeSizeFit'>"
-				  	+"<span class='twPc-StatLabel twPc-block'>Room</span>"
-						+"<span class='twPc-StatValue' style='text-align:center;'><center>"+data[i].roomid+"</center></span>"
-				+"</li>"
-				+"<li class='twPc-ArrangeSizeFit'>"
+         +"<ul class='twPc-Arrange'>"
+            +"<li class='twPc-ArrangeSizeFit'>"
+                 +"<span class='twPc-StatLabel twPc-block'>Room</span>"
+                  +"<span class='twPc-StatValue' style='text-align:center;'><center>"+data[i].roomid+"</center></span>"
+            +"</li>"
+            +"<li class='twPc-ArrangeSizeFit'>"
         +"&nbsp"
-				+"</li>"
+            +"</li>"
         +"<li class='twPc-ArrangeSizeFit'>"
         +"&nbsp"
-				+"</li>"
+            +"</li>"
       
-				+"<li class='twPc-ArrangeSizeFit'>"	
-						+"<span class='twPc-StatLabel twPc-block'>Device</span>"
-					  +"<span class='twPc-StatValue' style='text-align:center;'><center>"+data[i].members[j].attinfo.deviceid+"</center></span>"
-				+"</li>"
-			+"</ul>"
-		+"</div>"
+            +"<li class='twPc-ArrangeSizeFit'>"   
+                  +"<span class='twPc-StatLabel twPc-block'>Device</span>"
+                 +"<span class='twPc-StatValue' style='text-align:center;'><center>"+data[i].members[j].attinfo.deviceid+"</center></span>"
+            +"</li>"
+         +"</ul>"
+      +"</div>"
           +"</div>"
    +"</div>"
 +"</div>"
@@ -395,9 +395,7 @@ $.getJSON(finalURL,function(data){
     $('#target').append("</tbody>");
 
 }).fail(function(){
-       // alert("There is no attendance record on that date.")
        console.log("can not found this url");
-      // history.go(0);
    })
  
   }, 5000); //5초에 한번씩 받아온다. 
@@ -434,8 +432,6 @@ if(replaceTime.length >= 4 && replaceTime.length < 5) {
         return false;
     }
 
-
-
     // 입력한 분의 값이 60분을 넘는지 체크한다.
     if(minute > 60) {
         alert("The Minutes cannot exceed 60 minutes.");
@@ -468,13 +464,10 @@ function openModal(modalname){
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
             if (event.target != modal) {//modal
-             //modal.style.display = "none";
            $("#myModal").fadeOut(300);//modal
            $(".modal-con").fadeOut(300);
             }
         }
-
-
 
 console.log(localStorage.getItem("progID"))
 var progID = localStorage.getItem("progID");
