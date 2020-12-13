@@ -82,8 +82,7 @@
 
         <div class="row">
           <div class="container-M">
-          <div class="M2" style="position: relative; width: 65%;">
-
+          <div class="M2" style="position: relative; width: 65%;" id ="centerIMG">
             <script type="text/javascript">
               function movepage(page)
               {
@@ -210,6 +209,10 @@
 
 
 <script type="text/javascript">
+//미리 지정 
+var centerIMG = document.getElementById("centerIMG");
+var newMODAL = document.getElementById("myModal");
+
 $(function() {
       timer = setInterval( function () {
       
@@ -238,9 +241,6 @@ $(document).ready(function() {
 
 
 
-//미리 지정 
-var centerIMG = document.getElementById("centerIMG");
-var newMODAL = document.getElementById("myModal");
 
 //코드 복사 시작 
   //inputtime = thistime;
@@ -289,7 +289,6 @@ var newMODAL = document.getElementById("myModal");
       document.getElementById("R4").innerHTML=roomlist[2];
       document.getElementById("PT").innerHTML=roomlist[3];
 
-
       for(var i = 0; i < data.length; i++){ //반복문 추가 
       for(var j = 0; j < data[i].members.length; j++){
         var tempimgTAG = "#userimg";
@@ -298,11 +297,9 @@ var newMODAL = document.getElementById("myModal");
         var tempmod = "modal";
         tempimgTAG+=(j);
         tempimg += (j);
-
         var newDIV = document.createElement("div");
         newDIV.setAttribute("id",tempimg);
         centerIMG.appendChild(newDIV);
-
       var inputX = [];
       var inputY = [];
 
@@ -310,8 +307,18 @@ var newMODAL = document.getElementById("myModal");
       inputY[j] = data[i].members[j].position.y;
       inputX[j] = (inputX[j])/54.4 * 650;
       inputY[j] = (inputY[j])/33.9 * 380;
-      console.log(inputX[j]);
-      console.log(inputY[j]);
+
+      for(var k = (j-1) ; k>=0; k--){
+        if(inputX[j]==inputX[k]){
+            inputX[j] = (inputX[j]) + 30;
+            console.log(inputX[j]);
+            console.log(inputX[k]);
+            console.log('same!!!!!!!!!!!');
+          }
+      }
+      
+
+
       inputX[j]+= 'px';
       inputY[j]+= 'px';
 
@@ -321,7 +328,7 @@ var newMODAL = document.getElementById("myModal");
       $("#modal"+j).empty();//초기화
 
       //이미지 좌표로 바로 넣기
-      $(tempimgTAG).each(function(userimg){
+      $("#userimg"+j).each(function(userimg){
       var imgurl = "";
       imgurl = "<a href ="+"javascript:openModal("+"'modal"+j+"'"+");"+">"
       +"<img id = "+userid+""+j+" src = '" +img 
@@ -334,7 +341,6 @@ var newMODAL = document.getElementById("myModal");
       $("#"+userid+""+j).css("bottom", inputY[j]);
       $("#"+userid+""+j).css("left", inputX[j]);
       $("#"+userid+""+j).css("width", '35px');
-
     });
       
     // 각각 모달 레이어를 집어넣는 방식 
@@ -374,7 +380,7 @@ var newMODAL = document.getElementById("myModal");
 +"</div>"
               +"</div>"
               +"</div>";
-    console.log(lay[j]);
+
     $('#myModal').append(lay[j]);
       }}
     }
