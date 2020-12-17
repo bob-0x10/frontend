@@ -108,29 +108,29 @@
             </script>
             <!--스크립트 종료-->
 
-            <img src="assets/img/BoB_center.png" style="width: 680px;" >
+            <!--<img src="assets/img/BoB_center.png" style="width: 680px;" > -->
+            <img id ="myimage" src="assests/img/building.png" alt="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ready to upload ! Upload your Own file !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" width = "680" height = "437"/>
 
            </div>
 
           <div class="M1" style="width: 35%;">
             <h3 class="font-italic" style="margin-bottom: 0px;">Who's there?             <!--버튼 넣기-->   
-              <input type="button" class = "button" value="Real Time"  onclick="movepage('Amap_tmp.html')" >                                         
+              <input type="button" class = "button" value="Real Time"  onclick="movepage('Amap_tmp.html')" >  
+                                             
               <!--버튼 넣기 종료 -->        
             </h3>
-
+            <a><input type="file" id="upload_file" name="upload_file">  </a>
+            
             <p class="font-italic">
               <!--Specify a date so you can easily see who was in which location in your administration.-->
               <div class="input-group">
+               
                 <input type="text" id = "inputdate" class="form-control" placeholder="YYYY/MM/DD" style="margin-bottom: 5px; margin-top: 5px; ">
                 <input type="text" id = "inputtime" onKeyup="inputTimeColon(this);" class="form-control" placeholder=" HH : MM " style="margin-bottom: 5px; margin-top: 5px;" maxlength="5"/>
                 <button onclick="input()" style="margin-bottom: 5px; margin-top: 5px;">SEARCH</button>
               </div>
             </p>
-            <ul> <!--
-              <li><i class="icofont-check-circled"></i> Room 1 : 4 people</li>
-              <li><i class="icofont-check-circled"></i> Room 2 : 4 people</li>
-              <li><i class="icofont-check-circled"></i> Room 3 : 4 people</li>
-            -->
+            <ul> 
               <li>
                 <div>
                   <table id="target" class="list-table" style="margin: auto;">
@@ -151,7 +151,6 @@
     </section><!-- End About Section -->
 
 <!-- The Modal -->
-<!--모달 분해 필요함-->
 <div id="myModal" class = "modal">
 </div>
 
@@ -183,12 +182,6 @@
         </div>
       </div>
     </section><!-- End Facts Section -->
-
-    <!-- ======= Our Skills Section ======= -->
-<!-- End Our Skills Section -->
-
-   <!-- ======= Tetstimonials Section ======= -->
-   <!-- End Ttstimonials Section -->
 
   </main><!-- End #main -->
 
@@ -226,10 +219,26 @@
 
 <script type="text/javascript">
 
-//미리 지정 
+$(function() {
+            $("#upload_file").on('change', function(){
+                
+                readURL(this);
+            });
+        });
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#myimage').attr('src', e.target.result);
+        }
+      reader.readAsDataURL(input.files[0]);
+    }
+}
+      
+
 var centerIMG = document.getElementById("centerIMG");
 var newMODAL = document.getElementById("myModal");
-
 
 //코드 복사 시작 
 function input(){
@@ -243,9 +252,12 @@ function input(){
   var finalURL = searchurl + searchdate;
   var roomlist = [0,0,0,0]; //[2강의실, 3강의실, 4강의실, PT room(5라고가정)]
 
-  //이미지 초기화
-  for( var i = 0; i < 4 ; i++){
-  $('#mans'+i).remove();
+  //모달 초기화
+  $('#myModal').empty();
+  //이미지 초기화 
+  for(var i = 0; i < 30 ; i++)
+  {
+  $("#userimg"+i).empty();
   }
 
   $.ajax({
@@ -278,8 +290,6 @@ function input(){
       document.getElementById("R4").innerHTML=roomlist[2];
       document.getElementById("PT").innerHTML=roomlist[3];
 
-      //var centerIMG = document.getElementById("centerIMG");
-
       for(var i = 0; i < data.length; i++){
       for(var j = 0; j < data[i].members.length; j++){
         var tempimgTAG = "#userimg";
@@ -287,19 +297,19 @@ function input(){
         var tempimg = "userimg";
         var tempmod = "modal";
         tempimgTAG+=(j);
-       // tempmodTAG+=(j);
         tempimg += (j);
-        //tempmod += (j);
 
         var newDIV = document.createElement("div");
         newDIV.setAttribute("id",tempimg);
         centerIMG.appendChild(newDIV);
-
+      
       var inputX = [];
       var inputY = [];
 
       inputX[j] = data[i].members[j].position.x;
       inputY[j] = data[i].members[j].position.y;
+
+          //같은 위치 값 보정하기
       inputX[j] = (inputX[j])/54.4 * 650;
       inputY[j] = (inputY[j])/33.9 * 380;
       console.log(inputX[j]);
@@ -308,22 +318,19 @@ function input(){
       for(var k = (j-1) ; k>=0; k--){
       if(inputX[j]==inputX[k]){
         if(inputY[j]==inputY[k]){
-          inputX[j] = (inputX[j]) + 30;
-          inputY[j] = (inputY[j]) + 30;
+          inputX[j] = (inputX[j]) + 100;
+          inputY[j] = (inputY[j]) + 100;
         }
       }
       }
-
-
-      console.log(inputX[j]);
-      console.log(inputY[j]);
+    
       inputX[j]+= 'px';
       inputY[j]+= 'px';
 
     //그림 그리고 모달 레이어 넣기 
       var userid = data[i].members[j].member.id; //API에 맞게 변경 
       var img = "https://bob0x10.ga/img/" + userid; 
-      $("#userimg"+j).empty(); //tempimgTAG
+      $("#"+userid+j).empty(); //tempimgTAG
       $("#modal"+j).empty();//초기화
 
       //이미지 좌표로 바로 넣기, !!이미지 넣기 전에 TAG에 DIV 추가해보기 
@@ -339,7 +346,6 @@ function input(){
       $("#"+userid+""+j).css("bottom", inputY[j]);
       $("#"+userid+""+j).css("left", inputX[j]);
       $("#"+userid+""+j).css("width", '35px');
-
       });
 
     //모달 레이어에 상태창 넣기 
@@ -379,7 +385,6 @@ function input(){
 +"</div>"
               +"</div>"
               +"</div>";
-    //console.log(lay[j]);
     $('#myModal').append(lay[j]);
    
     }}
